@@ -1,6 +1,7 @@
 package lk.ijse;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,14 +21,17 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lk.ijse.Model.LoginModel;
+import lk.ijse.dto.LoginDTO;
 
 import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.*;
+import java.util.List;
 
 public class Client1chatFromController  implements Initializable {
 
@@ -60,19 +64,32 @@ public class Client1chatFromController  implements Initializable {
 
     Socket socket;
     private Socket clientSocket;
-    private BufferedReader dtin;
+    private DataInputStream dtin;
     private DataOutputStream dtout;
     @FXML
     private static TextField txtUsername ;
 
+    public static List<String> users = new ArrayList<>();
+
+
+    //String user_name;
+
+
    public   String user_name = String.valueOf(txtUsername);
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL location, ResourceBundle resourceBundle) {
         lblName.setText(String.valueOf(txtUsername));
 
         try {
+            setName();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        try {
             clientSocket = new Socket("localhost",3003);
-            dtin = new BufferedReader(new InputStreamReader(System.in));
+            dtin = new DataInputStream(clientSocket.getInputStream());
             dtout = new DataOutputStream(clientSocket.getOutputStream());
 
             chatBox.setPadding(new Insets(20));
@@ -91,12 +108,12 @@ public class Client1chatFromController  implements Initializable {
             new Thread(()-> {
                 try {
                     while (true){
-                        String massage = dtin.readLine();
+                        String massage = dtin.readUTF();
 
                         if (massage.startsWith("image")){
-                            String sender = dtin.readLine();
+                            String sender = dtin.readUTF();
                             Label senderLabel = new Label(sender+ ": ");
-                            String path = dtin.readLine();
+                            String path = dtin.readUTF();
 
                             ImageView imageView = new ImageView(new Image("file:" + path));
                             imageView.setFitWidth(192);
@@ -129,7 +146,7 @@ public class Client1chatFromController  implements Initializable {
                                 Platform.runLater(()->{
                                     HBox hBox = new HBox();
                                     hBox.setPadding(new Insets(5,15,5,15));
-                                    hBox.setStyle("-fx-background-color: #ffff; -fx-text-fill: #8934eb;-fx-background-radius: 14");
+                                    hBox.setStyle("-fx-background-color: #8934eb; -fx-text-fill: #8934eb;-fx-background-radius: 14");
                                     hBox.setAlignment(Pos.BASELINE_LEFT);
                                     Label label = new Label(massage);
                                     label.setTextFill(Color.WHITE);
@@ -187,6 +204,40 @@ public class Client1chatFromController  implements Initializable {
             });
 
         }); //end of the initialize method
+    }
+
+    private void setName() throws SQLException {
+//        String user_name = String.valueOf(txtUsername);
+//        lblName.setText(user_name);
+//        System.out.println(user_name);
+
+        LoginModel model = new LoginModel();
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<LoginDTO> allUsers = model.AllUsers();
+            for (LoginDTO dto : allUsers) {
+                obList.add(dto.getUser_name());
+                System.out.println(dto.getUser_name());
+            }
+            lblName.setText(user_name);
+            System.out.println(txtUsername);
+        } catch (SQLException e) {
+            System.out.printf(e.getMessage());
+        }
+
+
+
+//        LoginModel model = new LoginModel();
+//
+//        List<LoginDTO> allUsers = model.AllUsers();
+//        lblName.setText(user_name);
+//        System.out.println(user_name);
+//
+//        for (LoginDTO dto : allUsers) {
+//            lblName.setText(user_name);
+//        }
+
+
     }
 
 
@@ -365,19 +416,19 @@ public class Client1chatFromController  implements Initializable {
                 chatBox.getChildren().add(hbox);
             });
         }
-//
-//        try {
-//            EventObject actionEvent = null;
-//            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//            FileChooser fileChooser = new FileChooser();
-//            fileChooser.setTitle("Open Image");
-//            File filePath = fileChooser.showOpenDialog(stage);
-//            dtout.writeUTF(lblName.getText()+ "::" + "img" + filePath.getPath());
-//            dtout.flush();
-//        }catch (NullPointerException e){
-//            System.out.println(e);
-//            System.out.println("Image not Selected!");
-//        }
+
+        try {
+            EventObject actionEvent = null;
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Image");
+            File filePath = fileChooser.showOpenDialog(stage);
+            dtout.writeUTF(lblName.getText()+ "::" + "img" + filePath.getPath());
+            dtout.flush();
+        }catch (NullPointerException e){
+            System.out.println(e);
+            System.out.println("Image not Selected!");
+        }
         
     }
 

@@ -136,7 +136,7 @@
       </ScrollPane>
       <FlowPane fx:id="emojiContainer" layoutX="175.0" layoutY="443.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <FlowPane fx:id="emojiCategoryPane" onTouchMoved="#emojipane" prefHeight="200.0" prefWidth="200.0" />
+            <FlowPane fx:id="emojiCategoryPane" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </FlowPane>
       <Group fx:id="grpEnterName" layoutX="450.0" layoutY="20.0" />

@@ -37,18 +37,18 @@ public class Client2LoginFromController {
 
     public static List list= new ArrayList();
     public static HashMap<String, Image> userLIst = new HashMap<>();
-    public   static String userName;
+     String user_name;
         @FXML
         void btnJoinOnAction(ActionEvent event) {
 
             if(!txtUsername.getText().equals("")) {
 
-                userName = txtUsername.getText();
+                user_name = txtUsername.getText();
 
                 if (users.contains(txtUsername.getText())) {
                     new Alert(Alert.AlertType.ERROR,"already added").show();
                 } else {
-                    users.add(userName);
+                    users.add(user_name);
                     userLIst.put(txtUsername.getText(), image);
                     try {
                         Stage stage = new Stage();
@@ -74,8 +74,8 @@ public class Client2LoginFromController {
         }
 
         @FXML
-        void txtUsernameOnAction(ActionEvent event) {
-
+        void txtUsernameOnAction(ActionEvent actionEvent) {
+            btnJoinOnAction(actionEvent);
         }
 
     }

@@ -25,6 +25,8 @@ package lk.ijse;
         import java.io.*;
         import java.net.Socket;
         import java.net.URL;
+        import java.util.ArrayList;
+        import java.util.List;
         import java.util.Optional;
         import java.util.ResourceBundle;
 
@@ -59,20 +61,25 @@ public class Client2chatFromController implements Initializable {
 
     Socket socket;
     private Socket clientSocket;
-    private BufferedReader dtin;
+    private DataInputStream dtin;
     private DataOutputStream dtout;
+
     @FXML
     private static TextField txtUsername ;
+    public static List<String> users = new ArrayList<>();
 
-    public   String user_name = String.valueOf(txtUsername);
 
+    //public   String user_name = String.valueOf(txtUsername);
+        String user_name = String.valueOf(txtUsername);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblName.setText(String.valueOf(txtUsername));
+       //lblName.setText(user_name.toUpperCase());
+             setName();
 
         try {
             clientSocket = new Socket("localhost",3003);
-            dtin = new BufferedReader(new InputStreamReader(System.in));
+            dtin = new DataInputStream(clientSocket.getInputStream());
             dtout = new DataOutputStream(clientSocket.getOutputStream());
 
             chatBox.setPadding(new Insets(20));
@@ -91,12 +98,12 @@ public class Client2chatFromController implements Initializable {
             new Thread(()-> {
                 try {
                     while (true){
-                        String massage = dtin.readLine();
+                        String massage = dtin.readUTF();
 
                         if (massage.startsWith("image")){
-                            String sender = dtin.readLine();
+                            String sender = dtin.readUTF();
                             Label senderLabel = new Label(sender+ ": ");
-                            String path = dtin.readLine();
+                            String path = dtin.readUTF();
 
                             ImageView imageView = new ImageView(new Image("file:" + path));
                             imageView.setFitWidth(192);
@@ -129,7 +136,7 @@ public class Client2chatFromController implements Initializable {
                                 Platform.runLater(()->{
                                     HBox hBox = new HBox();
                                     hBox.setPadding(new Insets(5,15,5,15));
-                                    hBox.setStyle("-fx-background-color: #ffff; -fx-text-fill: #8934eb;-fx-background-radius: 14");
+                                    hBox.setStyle("-fx-background-color: #8934eb; -fx-text-fill: #8934eb;-fx-background-radius: 14");
                                     hBox.setAlignment(Pos.BASELINE_LEFT);
                                     Label label = new Label(massage);
                                     label.setTextFill(Color.WHITE);
@@ -187,6 +194,12 @@ public class Client2chatFromController implements Initializable {
             });
 
         }); //end of the initialize method
+    }
+
+    private void setName() {
+        String user_name = String.valueOf(txtUsername);
+        lblName.setText(user_name);
+        System.out.println(user_name);
     }
 
     private void dispayEmojiCategories() {
@@ -333,7 +346,7 @@ public class Client2chatFromController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif","*.file")
         );
 
         Stage stage = (Stage) iconFileClick.getScene().getWindow();

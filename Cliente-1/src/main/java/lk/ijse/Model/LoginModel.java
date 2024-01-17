@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginModel {
 
@@ -39,4 +41,25 @@ public class LoginModel {
         }
     }
 
+    public List<LoginDTO> AllUsers() throws SQLException {
+
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM users";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<LoginDTO> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String user_name = resultSet.getString(1);
+            String password = resultSet.getString(2);
+
+
+            var dto = new LoginDTO(user_name,password);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
 }
