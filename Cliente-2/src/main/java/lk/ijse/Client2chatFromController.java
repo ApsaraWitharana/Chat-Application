@@ -9,6 +9,7 @@ package lk.ijse;
         import javafx.geometry.Pos;
         import javafx.scene.Group;
         import javafx.scene.Node;
+        import javafx.scene.Scene;
         import javafx.scene.control.*;
         import javafx.scene.control.Label;
         import javafx.scene.control.ScrollPane;
@@ -18,6 +19,10 @@ package lk.ijse;
         import javafx.scene.input.MouseEvent;
         import javafx.scene.layout.*;
         import javafx.scene.paint.Color;
+        import javafx.scene.paint.ImagePattern;
+        import javafx.scene.shape.Circle;
+        import javafx.scene.text.Text;
+        import javafx.scene.text.TextFlow;
         import javafx.stage.FileChooser;
         import javafx.stage.Stage;
 
@@ -63,7 +68,13 @@ public class Client2chatFromController implements Initializable {
     private Socket clientSocket;
     private DataInputStream dtin;
     private DataOutputStream dtout;
-
+    @FXML
+    private FlowPane stikerPane;
+    public static Image image;
+    @FXML
+    private Circle circle;
+    @FXML
+    private AnchorPane filePane;
     @FXML
     private static TextField txtUsername ;
     public static List<String> users = new ArrayList<>();
@@ -73,9 +84,11 @@ public class Client2chatFromController implements Initializable {
         String user_name = String.valueOf(txtUsername);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lblName.setText(String.valueOf(txtUsername));
+        //lblName.setText(String.valueOf(txtUsername));
        //lblName.setText(user_name.toUpperCase());
-             setName();
+            // setName();
+        lblName.setText(Client2LoginFromController. user_name);
+
 
         try {
             clientSocket = new Socket("localhost",3003);
@@ -92,6 +105,7 @@ public class Client2chatFromController implements Initializable {
             emojiContainer.setVisible(false);
             emojiCategoryPane.setVisible(false);
             spaneForFlowPane.setVisible(false);
+
             displaySmileyEmojis();
             dispayEmojiCategories();
 
@@ -102,7 +116,10 @@ public class Client2chatFromController implements Initializable {
 
                         if (massage.startsWith("image")){
                             String sender = dtin.readUTF();
-                            Label senderLabel = new Label(sender+ ": ");
+                            System.out.println(sender);
+                            System.out.println(massage);
+                            Label senderLabel = new Label(sender+ ":");
+
                             String path = dtin.readUTF();
 
                             ImageView imageView = new ImageView(new Image("file:" + path));
@@ -136,7 +153,7 @@ public class Client2chatFromController implements Initializable {
                                 Platform.runLater(()->{
                                     HBox hBox = new HBox();
                                     hBox.setPadding(new Insets(5,15,5,15));
-                                    hBox.setStyle("-fx-background-color: #8934eb; -fx-text-fill: #8934eb;-fx-background-radius: 14");
+                                    hBox.setStyle("-fx-background-color: #33cc00; -fx-text-fill: #ffffff;-fx-background-radius: 14");
                                     hBox.setAlignment(Pos.BASELINE_LEFT);
                                     Label label = new Label(massage);
                                     label.setTextFill(Color.WHITE);
@@ -194,12 +211,17 @@ public class Client2chatFromController implements Initializable {
             });
 
         }); //end of the initialize method
+
+        if(image==null) {
+            image = new Image("/image/dp-for-girls-whatsapp-per.jpg");
+        }
+        circle.setFill(new ImagePattern(image));
     }
 
     private void setName() {
-        String user_name = String.valueOf(txtUsername);
-        lblName.setText(user_name);
-        System.out.println(user_name);
+//        String user_name = String.valueOf(txtUsername);
+//        lblName.setText(user_name);
+ //       System.out.println(user_name);
     }
 
     private void dispayEmojiCategories() {
@@ -225,7 +247,9 @@ public class Client2chatFromController implements Initializable {
                     changeColorOfEmojiCategories();
                     emojiLabel.setStyle("-fx-text-fill: red; -fx-font-size: 30;  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0, 0, 2)");
                 } else if (unicode.equals("\uD83C\uDF30")) {
-                    displayFoodEmojis();
+
+                        displayFoodEmojis();
+
                     changeColorOfEmojiCategories();
                     emojiLabel.setStyle("-fx-text-fill: red; -fx-font-size: 30;  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0, 0, 2)");
                 }
@@ -234,7 +258,8 @@ public class Client2chatFromController implements Initializable {
         }
     }
 
-    private void displayFoodEmojis() {
+    private void displayFoodEmojis()  {
+
     }
 
     private void displayAnimalEmojis() {
@@ -299,7 +324,7 @@ public class Client2chatFromController implements Initializable {
                 "\uD83D\uDE40", "\uD83D\uDE41", "\uD83D\uDE42", "\uD83D\uDE43", "\uD83D\uDE44",
                 "\uD83D\uDE45", "\uD83D\uDE46", "\uD83D\uDE47", "\uD83D\uDE48", "\uD83D\uDE49",
                 "\uD83D\uDE4A", "\uD83D\uDE4B", "\uD83D\uDE4C", "\uD83D\uDE4D", "\uD83D\uDE4E",
-                "\uD83D\uDE4F","U+1F617","U+263A","U+1F61A","U+1F927","U+1F618"
+                "\uD83D\uDE4F",
         };
 
         for (String emoji : emojis) {
@@ -329,6 +354,35 @@ public class Client2chatFromController implements Initializable {
         }
     }
 
+    @FXML
+    void camaraOnAcction(MouseEvent event) {
+
+    }
+
+    @FXML
+    void stikerpaneOnAction(MouseEvent event) {
+
+    }
+
+    @FXML
+    void sadOnAction(MouseEvent event) throws IOException {
+        String message = "/stiker/682-6823737_emoji-transparent-transparent-smiley-face-free-download-whatsapp.png";
+        dtout.writeUTF(lblName.getText() + "::" + "img" + message);
+        dtout.writeUTF(message);
+        dtout.flush();
+    }
+
+    @FXML
+    void slepOnAction(MouseEvent event) {
+
+    }
+
+    @FXML
+    void smileOnAction(MouseEvent event) {
+
+    }
+
+
 
 
 //    public void changeColorOfEmojiCategories() {
@@ -356,7 +410,7 @@ public class Client2chatFromController implements Initializable {
             String imagePath = selectedFile.getAbsolutePath();
             System.out.println("Selected image path: " + imagePath);
             dtout.writeUTF("image");     //sending the image to other clients
-            dtout.writeUTF(user_name);
+            dtout.writeUTF(lblName.getText());
             dtout.writeUTF(imagePath);
             dtout.flush();
 
@@ -391,7 +445,7 @@ public class Client2chatFromController implements Initializable {
                 Platform.runLater(()->{
                     HBox hbox = new HBox();
                     hbox.setPadding(new Insets(5, 15, 5, 15));
-                    hbox.setStyle("-fx-background-color: #8934eb; -fx-text-fill: black;-fx-background-radius: 14");
+                    hbox.setStyle("-fx-background-color: #ffffff; -fx-text-fill: black;-fx-background-radius: 10");
                     hbox.setAlignment(Pos.BASELINE_RIGHT);
                     Label label = new Label(massage + "\n");
                     label.setMaxWidth(300);
@@ -405,17 +459,25 @@ public class Client2chatFromController implements Initializable {
                     stackPane.setAlignment(Pos.BASELINE_RIGHT);
                     chatBox.getChildren().add(stackPane);
                 });
-                dtout.writeUTF("");
+                dtout.writeUTF(lblName.getText()+ " :" + txtSendmsg.getText());
                 dtout.flush();
                 txtSendmsg.clear();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+//        if(txtSendmsg.isVisible()){
+//            Text text2 = new Text(txtSendmsg.getText());
+//            TextFlow textFlow1 = new TextFlow(text2);
+//            textFlow1.setStyle("-fx-background-color:#939393;" + "-fx-background-radius: 20px;" + "-fx-font-size: 17px;");
+//            textFlow1.setPadding(new Insets(5, 10, 5, 10));
+//            chatBox.getChildren().add(hbox);
+//        }
 
         emojiContainer.setVisible(false);
         spaneForFlowPane.setVisible(false);
         emojiCategoryPane.setVisible(false);
+
 
     }
 
@@ -423,6 +485,37 @@ public class Client2chatFromController implements Initializable {
     void txtMassageOnAction(ActionEvent event) {
 
     }
+
+
+//    public void start(Stage primaryStage) {
+//        primaryStage.setTitle("JavaFX Input Name Label Example");
+//
+//        // Create TextField for input
+//        TextField nameInput = new TextField();
+//        nameInput.setPromptText("Enter your name");
+//
+//        // Create Label for displaying the input name
+//        Label nameLabel = new Label();
+//
+//        // Event handling: update label text when the user types in the TextField
+//        nameInput.textProperty().addListener((observable, oldValue, newValue) -> {
+//            lblName.setText("Your name is: " + newValue);
+//        });
+//
+//        // Layout setup using VBox
+//        VBox vbox = new VBox(10);
+//        vbox.getChildren().addAll(nameInput, nameLabel);
+//
+//        // Create the scene
+//        Scene scene = new Scene(vbox, 300, 150);
+//
+//        // Set the scene
+//        primaryStage.setScene(scene);
+//
+//        // Show the stage
+//        primaryStage.show();
+//    }
+//
 
 
 }

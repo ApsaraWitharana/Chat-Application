@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -135,7 +136,7 @@ public class ServerController implements Initializable {
         public void run() {
             try {
                 String name = dtin.readUTF();
-                broadcastMessagebyClients("System", name + " has joined the chat.", clientSocket);
+                broadcastMessagebyClients("System", name + "  joined the chat.", clientSocket);
 
                 while (true) {
                     String message = dtin.readUTF();
@@ -153,7 +154,11 @@ public class ServerController implements Initializable {
                 clients.remove(this);
                 System.out.println(clients);
                 clientSocket.close();
-                broadcastMessagebyClients("System", name + " has left the chat.", clientSocket);
+                broadcastMessagebyClients("System", name + "  left the chat.", clientSocket);
+
+               // TextFlow textFlow1 = new TextFlow();
+               // textFlow1.setStyle("-fx-background-color:#939393;" + "-fx-background-radius: 20px;" + "-fx-font-size: 17px;");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -177,6 +182,7 @@ public class ServerController implements Initializable {
                 if (sender.equals("System")) {
                     dtout.writeUTF(sender + ": " + message);
                     dtout.flush();
+
                 } else {
                     dtout.writeUTF(sender + ":\n" + message);
                     dtout.flush();

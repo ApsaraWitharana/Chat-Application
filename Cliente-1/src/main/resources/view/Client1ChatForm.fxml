@@ -17,21 +17,11 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Client1chatFromController">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="762.0" layoutX="38.0">
-         <image>
-            <Image url="@../image/wp-wallpaper.png" />
-         </image>
-      </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#323436" height="79.0" layoutX="348.0" layoutY="620.0" stroke="BLACK" strokeType="INSIDE" width="450.0" />
       <TextField fx:id="txtSendmsg" layoutX="460.0" layoutY="638.0" onAction="#txtMassageOnAction" prefHeight="42.0" prefWidth="285.0" style="-fx-background-color: gray;" />
       <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="746.0" layoutY="643.0" onMouseClicked="#btnSendOnAction">
          <image>
             <Image url="@../icon/icons8-sent-24.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="365.0" layoutY="642.0" onMouseClicked="#btnEmojiOnAction">
-         <image>
-            <Image url="@../icon/icons8-happy-32.png" />
          </image>
       </ImageView>
       <ImageView fx:id="iconFileClick" fitHeight="35.0" fitWidth="35.0" layoutX="410.0" layoutY="642.0" onMouseClicked="#btnFileOnAction">
@@ -85,17 +75,7 @@
             <Image url="@../icon/icons8-user-profile-48.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblName" layoutX="422.0" layoutY="18.0" prefHeight="35.0" prefWidth="354.0">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Circle fill="#e4e8ec" layoutX="382.0" layoutY="32.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="365.0" layoutY="14.0">
-         <image>
-            <Image url="@../image/whatsapp-dp-images-for-girl-wp-p.jpg" />
-         </image>
-      </ImageView>
+      <Circle fx:id="circle" fill="#e4e8ec" layoutX="382.0" layoutY="32.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
       <Text fill="#ece3e3" layoutX="117.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ijse set ek" wrappingWidth="205.1830997467041">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -129,21 +109,32 @@
             <Image url="@../image/images.jpeg" />
          </image>
       </ImageView>
-      <ScrollPane fx:id="spaneForFlowPane" layoutX="354.0" layoutY="59.0" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;">
-         <content>
-            <VBox fx:id="chatBox" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;" />
-         </content>
-      </ScrollPane>
-      <FlowPane fx:id="emojiContainer" layoutX="175.0" layoutY="443.0" prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <FlowPane fx:id="emojiCategoryPane" prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </FlowPane>
       <Group fx:id="grpEnterName" layoutX="450.0" layoutY="20.0" />
       <Group fx:id="grpMessageArea" layoutX="460.0" layoutY="630.0" />
       <Label layoutX="117.0" layoutY="195.0" prefHeight="18.0" prefWidth="200.0" text="anu: hii" textFill="#e7e1e1" />
       <Label layoutX="107.0" layoutY="288.0" prefHeight="18.0" prefWidth="200.0" text="sachi:mokada karanne?" textFill="#e7e1e1" />
       <Label layoutX="117.0" layoutY="377.0" prefHeight="18.0" prefWidth="200.0" text="anu:ko anee" textFill="#e7e1e1" />
       <Line endX="141.39996337890625" layoutX="193.0" layoutY="137.0" startX="-148.1999969482422" />
+      <ScrollPane layoutX="354.0" layoutY="71.0" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;">
+         <content>
+            <VBox fx:id="chatBox" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;" />
+         </content>
+      </ScrollPane>
+      <Label fx:id="lblName" layoutX="419.0" layoutY="18.0" prefHeight="42.0" prefWidth="366.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="364.0" layoutY="642.0" onMouseClicked="#btnEmojiOnAction">
+         <image>
+            <Image url="@../icon/icons8-happy-32.png" />
+         </image>
+      </ImageView>
+      <ScrollPane fx:id="spaneForFlowPane" layoutX="40.0" layoutY="288.0" prefHeight="280.0" prefWidth="320.0">
+         <content>
+            <FlowPane fx:id="emojiContainer" prefHeight="280.0" prefWidth="320.0" />
+         </content>
+      </ScrollPane>
+      <FlowPane fx:id="emojiCategoryPane" layoutX="40.0" layoutY="234.0" prefHeight="54.0" prefWidth="320.0" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>

@@ -19,5 +19,6 @@ public class Client1Initializer extends Application {
         primaryStage.setTitle("Chat Room");
         primaryStage.centerOnScreen();
         primaryStage.show();
+
     }
 }
