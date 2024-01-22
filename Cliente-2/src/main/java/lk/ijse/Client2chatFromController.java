@@ -25,6 +25,7 @@ package lk.ijse;
         import javafx.scene.text.TextFlow;
         import javafx.stage.FileChooser;
         import javafx.stage.Stage;
+        import javafx.stage.Window;
 
         import java.awt.*;
         import java.io.*;
@@ -355,8 +356,19 @@ public class Client2chatFromController implements Initializable {
     }
 
     @FXML
-    void camaraOnAcction(MouseEvent event) {
+    void camaraOnAcction(MouseEvent actionEvent) {
+        Window window = ((Node) (actionEvent.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        actionEvent.consume();
+        try {
+            InputStream in = new FileInputStream(file);
+            image = new Image(in);
+            circle.setFill(new ImagePattern(image));
 
+        } catch (FileNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
@@ -483,6 +495,11 @@ public class Client2chatFromController implements Initializable {
 
     @FXML
     void txtMassageOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void settingOnAction(MouseEvent event) {
 
     }
 

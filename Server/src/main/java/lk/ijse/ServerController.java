@@ -180,11 +180,11 @@ public class ServerController implements Initializable {
         public void sendMessage(String sender, String message) {
             try {
                 if (sender.equals("System")) {
-                    dtout.writeUTF(sender + ": " + message);
+                    dtout.writeUTF(sender + ":" + message);
                     dtout.flush();
 
                 } else {
-                    dtout.writeUTF(sender + ":\n" + message);
+                    dtout.writeUTF( message);
                     dtout.flush();
                 }
             } catch (IOException e) {

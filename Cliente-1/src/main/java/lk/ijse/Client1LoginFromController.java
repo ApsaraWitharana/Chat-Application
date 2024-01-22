@@ -54,8 +54,8 @@ public class Client1LoginFromController {
     void btnJoinOnAction(ActionEvent event) throws IOException, SQLException {
 
 // database eken data arn user log wima
-      //  userName = txtUsername.getText();
-      //  txtUsername.clear();
+
+
 //        var LoginModel = new LoginModel();
 //       boolean isCorrect = LoginModel.isCurrect(txtUsername.getText(), txtPassword.getText());
 //
@@ -66,11 +66,12 @@ public class Client1LoginFromController {
 //            stage.setScene(scene);
 //            stage.centerOnScreen();
 //            stage.show();
-
+//            user_name = txtUsername.getText();
+//            txtUsername.clear();
 //            String user_name = txtUsername.getText();
 //            Client1chatFromController client1chatFromController = new Client1chatFromController();
 //             client1chatFromController.getName(user_name);
- //       }
+//        }
 
 //        if(!txtUsername.getText().equals("")) {
 //
@@ -95,7 +96,7 @@ public class Client1LoginFromController {
 //            }
 //        }else
 //            new Alert(Alert.AlertType.ERROR, "Please enter your name!").show();
-
+// nomal log
                  user_name = txtUsername.getText();
                  txtUsername.clear();
 
@@ -103,8 +104,7 @@ public class Client1LoginFromController {
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client1ChatForm.fxml"))));
                     stage.setTitle("Chat Room");
                     stage.show();
-//        Stage stage1 = (Stage)loginPane .getScene().getWindow();
-//        stage.close();
+//
                    //btnJoin .getScene().getWindow().hide();
    }
 

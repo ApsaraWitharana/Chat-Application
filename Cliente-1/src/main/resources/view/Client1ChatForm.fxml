@@ -117,12 +117,20 @@
       <Line endX="141.39996337890625" layoutX="193.0" layoutY="137.0" startX="-148.1999969482422" />
       <ScrollPane layoutX="354.0" layoutY="71.0" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;">
          <content>
-            <VBox fx:id="chatBox" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;" />
+            <AnchorPane fx:id="backgroundPane" prefHeight="554.0" prefWidth="436.0">
+               <children>
+                  <AnchorPane fx:id="imgPane" prefHeight="546.0" prefWidth="426.0">
+                     <children>
+                        <VBox fx:id="chatBox" layoutX="-6.0" prefHeight="555.0" prefWidth="438.0" style="-fx-background-color: water;" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </content>
       </ScrollPane>
-      <Label fx:id="lblName" layoutX="419.0" layoutY="18.0" prefHeight="42.0" prefWidth="366.0">
+      <Label fx:id="lblName" layoutX="428.0" layoutY="15.0" prefHeight="42.0" prefWidth="338.0">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="364.0" layoutY="642.0" onMouseClicked="#btnEmojiOnAction">
@@ -136,5 +144,15 @@
          </content>
       </ScrollPane>
       <FlowPane fx:id="emojiCategoryPane" layoutX="40.0" layoutY="234.0" prefHeight="54.0" prefWidth="320.0" style="-fx-background-color: white;" />
+      <ImageView layoutX="388.0" layoutY="39.0" onMouseClicked="#camaraOnAcction">
+         <image>
+            <Image url="@../icon/icons8-add-whatsapp-status-24.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="766.0" layoutY="24.0" onMouseClicked="#settingOnAction">
+         <image>
+            <Image url="@../icon/icons8-vertical-ellipsis-menu-with-three-dots-expansion-24.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

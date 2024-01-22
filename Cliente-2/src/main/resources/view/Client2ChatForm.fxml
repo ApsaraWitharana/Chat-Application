@@ -20,19 +20,19 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#323436" height="700.0" layoutX="35.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="313.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#323436" height="79.0" layoutX="349.0" layoutY="624.0" stroke="BLACK" strokeType="INSIDE" width="450.0" />
       <TextField fx:id="txtSendmsg" layoutX="456.0" layoutY="642.0" onAction="#txtMassageOnAction" prefHeight="42.0" prefWidth="285.0" style="-fx-background-color: gray;" />
-      <ImageView fx:id="iconFileClick" fitHeight="35.0" fitWidth="35.0" layoutX="419.0" layoutY="646.0" onMouseClicked="#btnFileOnAction">
+      <ImageView fx:id="iconFileClick" fitHeight="35.0" fitWidth="35.0" layoutX="409.0" layoutY="647.0" onMouseClicked="#btnFileOnAction">
          <image>
             <Image url="@../icon/icons8-attach-50.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="756.0" layoutY="653.0" onMouseClicked="#btnSendOnAction">
+      <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="742.0" layoutY="649.0" onMouseClicked="#btnSendOnAction">
          <image>
             <Image url="@../icon/icons8-sent-24.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblName" layoutX="421.0" layoutY="22.0" prefHeight="35.0" prefWidth="354.0">
+      <Label fx:id="lblName" layoutX="427.0" layoutY="22.0" prefHeight="35.0" prefWidth="343.0">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Circle fx:id="circle" fill="#e4e8ec" layoutX="382.0" layoutY="40.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
@@ -125,7 +125,7 @@
       <Group fx:id="grpMessageArea" layoutX="470.0" layoutY="640.0" />
       <Label layoutX="137.0" layoutY="215.0" prefHeight="18.0" prefWidth="200.0" text="anu: hii" textFill="#e7e1e1" />
       <Line endX="141.39996337890625" layoutX="200.0" layoutY="136.0" startX="-148.1999969482422" />
-      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="382.0" layoutY="646.0" onMouseClicked="#btnEmojiOnAction">
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="365.0" layoutY="646.0" onMouseClicked="#btnEmojiOnAction">
          <image>
             <Image url="@../icon/icons8-happy-32.png" />
          </image>
@@ -136,9 +136,14 @@
          </content>
       </ScrollPane>
       <FlowPane fx:id="emojiCategoryPane" layoutX="31.0" layoutY="250.0" prefHeight="60.0" prefWidth="324.0" style="-fx-background-color: white;" />
-      <ImageView layoutX="353.0" layoutY="651.0" onMouseClicked="#camaraOnAcction">
+      <ImageView layoutX="388.0" layoutY="43.0" onMouseClicked="#camaraOnAcction">
          <image>
             <Image url="@../icon/icons8-add-whatsapp-status-24.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="774.0" layoutY="28.0" onMouseClicked="#settingOnAction">
+         <image>
+            <Image url="@../icon/icons8-vertical-ellipsis-menu-with-three-dots-expansion-24.png" />
          </image>
       </ImageView>
    </children>

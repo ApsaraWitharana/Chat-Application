@@ -23,6 +23,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.awt.*;
 import java.io.*;
@@ -73,6 +74,15 @@ public class Client1chatFromController  implements Initializable {
     @FXML
     private Circle circle;
 
+    @FXML
+    private AnchorPane backgroundPane;
+
+    @FXML
+    private AnchorPane imgPane;
+
+    @FXML
+    private AnchorPane particatePane;
+
     public static List<String> users = new ArrayList<>();
 
     public static Image image;
@@ -101,6 +111,7 @@ public class Client1chatFromController  implements Initializable {
             clientSocket = new Socket("localhost",3003);
             dtin = new DataInputStream(clientSocket.getInputStream());
             dtout = new DataOutputStream(clientSocket.getOutputStream());
+
 
             chatBox.setPadding(new Insets(20));
             chatBox.setSpacing(10);
@@ -219,6 +230,7 @@ public class Client1chatFromController  implements Initializable {
             image = new Image("/image/whatsapp-dp-images-for-girl-wp-p.jpg");
         }
         circle.setFill(new ImagePattern(image));
+
     }
 
 
@@ -458,7 +470,7 @@ public class Client1chatFromController  implements Initializable {
                 Platform.runLater(()->{
                     HBox hbox = new HBox();
                     hbox.setPadding(new Insets(5, 15, 5, 15));
-                    hbox.setStyle("-fx-background-color: #ffff; -fx-text-fill: black;-fx-background-radius: 14");
+                    hbox.setStyle("-fx-background-color: #ffff; -fx-text-fill: black;-fx-background-radius: 10");
                     hbox.setAlignment(Pos.BASELINE_RIGHT);
                     Label label = new Label(massage+"\n");
                     label.setMaxWidth(300);
@@ -472,7 +484,7 @@ public class Client1chatFromController  implements Initializable {
                     stackPane.setAlignment(Pos.BASELINE_RIGHT);
                     chatBox.getChildren().add(stackPane);
                 });
-                dtout.writeUTF(lblName.getText() + " :" + txtSendmsg.getText());
+                dtout.writeUTF(lblName.getText() + ":" + txtSendmsg.getText());
                 dtout.flush();
                 txtSendmsg.clear();
             } catch (IOException e) {
@@ -498,6 +510,34 @@ public class Client1chatFromController  implements Initializable {
 
     @FXML
     void txtUserNameOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void camaraOnAcction(MouseEvent actionEvent) {
+        Window window = ((Node) (actionEvent.getSource())).getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(window);
+        actionEvent.consume();
+        try {
+            InputStream in = new FileInputStream(file);
+            image = new Image(in);
+            circle.setFill(new ImagePattern(image));
+
+        } catch (FileNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    @FXML
+    void settingOnAction(MouseEvent actionEvent) {
+
+//        if(!backgroundPane.isVisible() && !imgPane.isVisible())
+//            backgroundPane.setVisible(true);
+//        else if (backgroundPane.isVisible() && !imgPane.isVisible())
+//            backgroundPane.setVisible(false);
+//        else if (imgPane.isVisible())
+//            imgPane.setVisible(false);
 
     }
 
