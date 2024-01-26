@@ -135,7 +135,7 @@
             <FlowPane fx:id="emojiContainer" prefHeight="280.0" prefWidth="320.0" />
          </content>
       </ScrollPane>
-      <FlowPane fx:id="emojiCategoryPane" layoutX="31.0" layoutY="250.0" prefHeight="60.0" prefWidth="324.0" style="-fx-background-color: white;" />
+      <FlowPane fx:id="emojiCategoryPane" layoutX="30.0" layoutY="254.0" prefHeight="60.0" prefWidth="324.0" style="-fx-background-color: white;" />
       <ImageView layoutX="388.0" layoutY="43.0" onMouseClicked="#camaraOnAcction">
          <image>
             <Image url="@../icon/icons8-add-whatsapp-status-24.png" />

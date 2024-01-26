@@ -13,7 +13,7 @@ public class Client3Initializer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(this.getClass().getResource("Client3LoginForm.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/Client3LoginForm.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Chat Room");

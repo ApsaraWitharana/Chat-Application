@@ -167,7 +167,7 @@ public class Client1chatFromController  implements Initializable {
                                 Platform.runLater(()->{
                                     HBox hBox = new HBox();
                                     hBox.setPadding(new Insets(5,15,5,15));
-                                    hBox.setStyle("-fx-background-color: #8934eb; -fx-text-fill: #ffff;-fx-background-radius: 14");
+                                    hBox.setStyle("-fx-background-color: #6a1387; -fx-text-fill: #ffff;-fx-background-radius: 14");
                                     hBox.setAlignment(Pos.BASELINE_LEFT);
                                     Label label = new Label(massage);
                                     label.setTextFill(Color.WHITE);
@@ -197,7 +197,7 @@ public class Client1chatFromController  implements Initializable {
         }
 
         Platform.runLater(()->{
-                Image backgroundImage = new Image("/image/wp-wallpaper.png");
+                Image backgroundImage = new Image("/image/wpp-wallpaper.jpg");
                 BackgroundImage background = new BackgroundImage(backgroundImage,
                         BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
                 chatBox.setBackground(new Background(background));
