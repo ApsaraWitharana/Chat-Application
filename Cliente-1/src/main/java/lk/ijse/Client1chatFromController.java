@@ -94,11 +94,11 @@ public class Client1chatFromController  implements Initializable {
     public void initialize(URL location, ResourceBundle resourceBundle) {
        // lblName.setText(String.valueOf(txtUsername));
 
-       // Client1chatFromController client1chatFromController = new Client1chatFromController();
-       // client1chatFromController.lblName.setText(user_name);
+       //Client1chatFromController client1chatFromController = new Client1chatFromController();
+      // client1chatFromController.lblName.setText(user_name);
       //  lblName.setText(user_name);
 
-        lblName.setText(Client1LoginFromController. user_name);
+        lblName.setText(Client1LoginFromController.user_name);
 
 //        try {
 //            setName();
@@ -409,7 +409,7 @@ public class Client1chatFromController  implements Initializable {
 
     @FXML
     void btnFileOnAction(MouseEvent mouseEvent) throws IOException {
-        FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser(); //create the object
         fileChooser.setTitle("Open Image File");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
@@ -419,11 +419,11 @@ public class Client1chatFromController  implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(stage);
 
         if (selectedFile != null) {
-            String imagePath = selectedFile.getAbsolutePath();
+            String imagePath = selectedFile.getAbsolutePath();//set the image to you select
             System.out.println("Selected image path: " + imagePath);
             dtout.writeUTF("image");     //sending the image to other clients
-            dtout.writeUTF(lblName.getText() );
-            dtout.writeUTF(imagePath);
+            dtout.writeUTF(lblName.getText() );//set name
+            dtout.writeUTF(imagePath); //set image
             dtout.flush();
 
             ImageView imageView = new ImageView(new Image("file:" + imagePath));
@@ -452,7 +452,7 @@ public class Client1chatFromController  implements Initializable {
             fileChooser = new FileChooser();
             fileChooser.setTitle("Open Image");
             File filePath = fileChooser.showOpenDialog(stage);
-            dtout.writeUTF(lblName.getText()+ "::" + "img" + filePath.getPath());
+            dtout.writeUTF(lblName.getText()+ "::" + "img" + filePath.getPath());//set image to the path
             dtout.flush();
         }catch (NullPointerException e){
             System.out.println(e);

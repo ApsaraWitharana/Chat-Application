@@ -302,6 +302,12 @@ public class Client2chatFromController implements Initializable {
     }
 
     private void changeColorOfEmojiCategories() {
+        ObservableList<Node> children = emojiCategoryPane.getChildren();
+
+        for (int i = 0; i < children.size(); i++) {
+            Node child = children.get(i);
+            child.setStyle("-fx-text-fill: black; -fx-font-size: 30");
+        }
     }
 
     private void displaySmileyEmojis() {

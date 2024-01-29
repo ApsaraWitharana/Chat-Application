@@ -34,7 +34,7 @@ public class Client1LoginFromController {
 
     public static List list= new ArrayList();
     public static HashMap<String, Image> userLIst = new HashMap<>();
-    public static String user_name;
+     //String user_name;
 
     @FXML
         private Circle circle;
@@ -45,7 +45,7 @@ public class Client1LoginFromController {
     @FXML
     private TextField txtUsername;
 
-  public   String userName;
+  public static   String user_name;
 
     @FXML
     private AnchorPane loginPane;
@@ -73,44 +73,18 @@ public class Client1LoginFromController {
 //             client1chatFromController.getName(user_name);
 //        }
 
-//        if(!txtUsername.getText().equals("")) {
-//
-//            userName = txtUsername.getText();
-//
-//            if (users.contains(txtUsername.getText())) {
-//                new Alert(Alert.AlertType.ERROR,"already added").show();
-//            } else {
-//                users.add(userName);
-//                userLIst.put(txtUsername.getText(), image);
-//                try {
-//                    Stage stage = new Stage();
-//                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client1ChatForm.fxml"))));
-//                    stage.setTitle("Chat Room");
-//                    stage.show();
-//                    txtUsername.setText("");
-//                    circle.setFill(null);
-//                    image = null;
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }else
-//            new Alert(Alert.AlertType.ERROR, "Please enter your name!").show();
+
 // nomal log
                  user_name = txtUsername.getText();
                  txtUsername.clear();
 
-                     Stage stage = new Stage();
+                    Stage stage = new Stage();
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client1ChatForm.fxml"))));
                     stage.setTitle("Chat Room");
                     stage.show();
-//
+
                    //btnJoin .getScene().getWindow().hide();
    }
-
-
-
-
 
 
 

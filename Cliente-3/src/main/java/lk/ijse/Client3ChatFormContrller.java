@@ -1,6 +1,7 @@
 package lk.ijse;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -293,6 +294,12 @@ public class Client3ChatFormContrller implements Initializable {
     }
 
     private void changeColorOfEmojiCategories() {
+        ObservableList<Node> children = emojiCategoryPane.getChildren();
+
+        for (int i = 0; i < children.size(); i++) {
+            Node child = children.get(i);
+            child.setStyle("-fx-text-fill: black; -fx-font-size: 30");
+        }
     }
 
     private void displaySmileyEmojis() {
