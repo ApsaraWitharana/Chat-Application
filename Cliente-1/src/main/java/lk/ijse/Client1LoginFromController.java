@@ -76,7 +76,7 @@ public class Client1LoginFromController {
 //        }
 
 
-// nomal log
+// normal log
                  user_name = txtUsername.getText();
                  txtUsername.clear();
 
@@ -84,9 +84,12 @@ public class Client1LoginFromController {
                     stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client1ChatForm.fxml"))));
                     stage.setTitle("Chat Room");
                     stage.show();
+
                     //Stage stage1 = (Stage) loginPane.getScene().getWindow();
                     // stage.close();
+
         loginPane.getScene().getWindow().hide();
+
    }
 
 

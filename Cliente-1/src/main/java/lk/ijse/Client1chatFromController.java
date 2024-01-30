@@ -198,6 +198,7 @@ public class Client1chatFromController  implements Initializable {
 
         Platform.runLater(()->{
                 Image backgroundImage = new Image("/image/wpp-wallpaper.jpg");
+            //Image backgroundImage = new Image("/image/back.jpg");
                 BackgroundImage background = new BackgroundImage(backgroundImage,
                         BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
                 chatBox.setBackground(new Background(background));
