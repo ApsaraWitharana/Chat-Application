@@ -79,7 +79,7 @@ public class Client3LoginFormController {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client3ChatForm.fxml"))));
         stage.setTitle("Chat Room");
         stage.show();
-        //stage.close();
+        btnJoin.getScene().getWindow().hide();
 
     }
 

@@ -82,7 +82,7 @@ public class Client2LoginFromController {
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Client2ChatForm.fxml"))));
             stage.setTitle("Chat Room");
             stage.show();
-            //stage.close();
+            btnJoin.getScene().getWindow().hide();
 
         }
 
